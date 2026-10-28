@@ -6,7 +6,7 @@
 /*   By: gcouto-b <gcouto-b@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 18:46:52 by gcouto-b          #+#    #+#             */
-/*   Updated: 2026/10/26 21:35:38 by gcouto-b         ###   ########.fr       */
+/*   Updated: 2026/10/28 16:05:19 by gcouto-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	ft_dispatcher(va_list *args, char c)
 	if (c == 'u')
 		return (ft_putunbr_pf(va_arg(*args, unsigned int)));
 	if (c == 'x')
-		return (ft_puthex_pf(va_arg(*args, unsigned int), 0));
+		return (ft_puthex_pf(va_arg(*args, unsigned int), LOWER_HEX));
 	if (c == 'X')
-		return (ft_puthex_pf(va_arg(*args, unsigned int), 1));
+		return (ft_puthex_pf(va_arg(*args, unsigned int), UPPER_HEX));
 	return (0);
 }
 
@@ -50,6 +50,8 @@ int	ft_printf(const char *str, ...)
 	int		ret;
 
 	counter = 0;
+	if (!str)
+		return (-1);
 	va_start(args, str);
 	while (*str)
 	{
@@ -65,11 +67,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (counter);
 }
-
-// int main()
-// {
-// 	int count = 0;
-// 	count = ft_printf(" %d ", 10);
-// 	printf("\nPrinted characters: %d\n", count);
-// 	return (0);
-// }

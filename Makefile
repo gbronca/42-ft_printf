@@ -6,7 +6,7 @@
 #    By: gcouto-b <gcouto-b@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/23 18:53:47 by gcouto-b          #+#    #+#              #
-#    Updated: 2026/10/26 16:05:52 by gcouto-b         ###   ########.fr        #
+#    Updated: 2026/10/28 16:05:45 by gcouto-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,23 +16,20 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_printf.c \
-	ft_putchar_pf.c \
-	ft_putnbr_pf.c \
-	ft_putstr_pf.c \
-	ft_putptr_pf.c
-	
+	ft_libft_utils.c \
+	ft_printf_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-$(OBJS): 
+$(OBJS): ft_printf.h
 
 clean:
 	$(RM) $(OBJS)
